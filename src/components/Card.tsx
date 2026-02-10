@@ -7,5 +7,5 @@ interface CardProps {
 }
 
 export const Card = ({ children, className }: CardProps) => {
-  return <div className={`card ${className}`}>{children}</div>;
+  return <div className={className ? `card ${className}` : 'card'}>{children}</div>;
 };
