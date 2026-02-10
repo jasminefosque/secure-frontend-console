@@ -1,0 +1,17 @@
+# CODEOWNERS
+# This file defines individuals or teams responsible for code in this repository.
+# Code owners are automatically requested for review when someone opens a pull request.
+
+# Default owner for everything in the repo
+* @jasminefosque
+
+# Security-sensitive files require additional review
+/SECURITY.md @jasminefosque
+/docs/threat-model.md @jasminefosque
+/.github/workflows/ @jasminefosque
+/src/domain/ @jasminefosque
+
+# Dependency management
+/package.json @jasminefosque
+/package-lock.json @jasminefosque
+/.github/dependabot.yml @jasminefosque
