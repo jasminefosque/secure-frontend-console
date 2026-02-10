@@ -15,6 +15,12 @@ updates:
     labels:
       - "dependencies"
       - "security"
+    ignore:
+      # Ignore ESLint major version updates until plugin ecosystem catches up
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@eslint/js"
+        update-types: ["version-update:semver-major"]
     groups:
       production-dependencies:
         patterns:
