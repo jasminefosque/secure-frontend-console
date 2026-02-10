@@ -27,11 +27,9 @@ test.describe('Expense Tracker E2E', () => {
     await page.getByRole('button', { name: 'Save Expense' }).click();
 
     await expect(page.getByText('Lunch at restaurant')).toBeVisible();
-    await expect(page.getByText('$45.50')).toBeVisible();
+    await expect(page.locator('.expense-amount', { hasText: '$45.50' })).toBeVisible();
 
     await expect(page.getByText('Expense added successfully')).toBeVisible();
-
-    await expect(page.getByText('$45.50').first()).toBeVisible();
 
     await page.getByRole('button', { name: 'Edit expense' }).click();
 
@@ -40,7 +38,7 @@ test.describe('Expense Tracker E2E', () => {
     await page.fill('#amount', '50.00');
     await page.getByRole('button', { name: 'Save Expense' }).click();
 
-    await expect(page.getByText('$50.00')).toBeVisible();
+    await expect(page.locator('.expense-amount', { hasText: '$50.00' })).toBeVisible();
     await expect(page.getByText('Expense updated successfully')).toBeVisible();
 
     const downloadPromise = page.waitForEvent('download');
