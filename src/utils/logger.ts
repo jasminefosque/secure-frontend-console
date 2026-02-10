@@ -11,8 +11,10 @@ class Logger {
     const entry = this.createLogEntry('INFO', event, context);
 
     if (this.isDevelopment) {
+      // eslint-disable-next-line no-console
       console.log(`[INFO] ${event}`, context ?? '');
     } else {
+      // eslint-disable-next-line no-console
       console.log(JSON.stringify(entry));
     }
   }
@@ -41,11 +43,7 @@ class Logger {
     }
   }
 
-  private createLogEntry(
-    level: LogLevel,
-    event: string,
-    context?: LogContext
-  ): LogContext {
+  private createLogEntry(level: LogLevel, event: string, context?: LogContext): LogContext {
     return {
       timestamp: new Date().toISOString(),
       level,

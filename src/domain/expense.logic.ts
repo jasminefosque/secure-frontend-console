@@ -9,16 +9,11 @@ export const calculateAverageAmount = (expenses: Expense[]): number => {
   return calculateTotalAmount(expenses) / expenses.length;
 };
 
-export const calculateCategoryTotals = (
-  expenses: Expense[]
-): Record<string, number> => {
-  return expenses.reduce(
-    (totals, expense) => {
-      totals[expense.category] = (totals[expense.category] ?? 0) + expense.amount;
-      return totals;
-    },
-    {} as Record<string, number>
-  );
+export const calculateCategoryTotals = (expenses: Expense[]): Record<string, number> => {
+  return expenses.reduce<Record<string, number>>((totals, expense) => {
+    totals[expense.category] = (totals[expense.category] ?? 0) + expense.amount;
+    return totals;
+  }, {});
 };
 
 export const filterExpenses = (expenses: Expense[], filter: ExpenseFilter): Expense[] => {

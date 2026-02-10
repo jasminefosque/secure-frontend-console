@@ -5,17 +5,16 @@ export const expenseSchema = z.object({
   amount: z
     .number()
     .positive('Amount must be positive')
-    .max(1000000, 'Amount exceeds maximum of 1,000,000')
-    .finite('Amount must be a finite number'),
+    .max(1000000, 'Amount exceeds maximum of 1,000,000'),
   description: z
     .string()
     .min(1, 'Description is required')
     .max(200, 'Description must be 200 characters or less')
     .trim(),
   category: z.enum(['food', 'transport', 'utilities', 'entertainment', 'other'], {
-    errorMap: () => ({ message: 'Invalid category' }),
+    message: 'Invalid category',
   }),
-  date: z.string().datetime({ message: 'Invalid date format' }),
+  date: z.string().datetime(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });

@@ -8,16 +8,20 @@ interface ToastProps {
   onClose: () => void;
 }
 
-export const Toast = ({ message, type = 'info', duration = 3000, onClose }: ToastProps) => {
+export const Toast = ({ message, type, duration, onClose }: ToastProps) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onClose, 300);
+      setTimeout(() => {
+        onClose();
+      }, 300);
     }, duration);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [duration, onClose]);
 
   if (!isVisible) return null;
@@ -29,7 +33,9 @@ export const Toast = ({ message, type = 'info', duration = 3000, onClose }: Toas
         className="toast-close"
         onClick={() => {
           setIsVisible(false);
-          setTimeout(onClose, 300);
+          setTimeout(() => {
+            onClose();
+          }, 300);
         }}
         aria-label="Close notification"
         type="button"

@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { expenseSchema, expenseInputSchema, filterSchema } from '../domain/expense.schema';
+import { expenseInputSchema, filterSchema } from '../domain/expense.schema';
 
 describe('Expense Schema Validation', () => {
   describe('expenseInputSchema', () => {
     it('should accept valid expense input', () => {
       const validInput = {
-        amount: 100.50,
+        amount: 100.5,
         description: 'Grocery shopping',
         category: 'food' as const,
         date: new Date().toISOString(),

@@ -1,21 +1,21 @@
 import { logger } from './logger';
 
 export interface StorageAdapter {
-  getItem<T>(key: string, validator: (data: unknown) => T | undefined): T | undefined;
-  setItem<T>(key: string, value: T): boolean;
+  getItem(key: string, validator: (data: unknown) => unknown): unknown;
+  setItem(key: string, value: unknown): boolean;
   removeItem(key: string): void;
   clear(): void;
 }
 
 class LocalStorageAdapter implements StorageAdapter {
-  getItem<T>(key: string, validator: (data: unknown) => T | undefined): T | undefined {
+  getItem(key: string, validator: (data: unknown) => unknown): unknown {
     try {
       const serialized = localStorage.getItem(key);
       if (!serialized) {
         return undefined;
       }
 
-      const parsed = JSON.parse(serialized);
+      const parsed: unknown = JSON.parse(serialized);
       const validated = validator(parsed);
 
       if (!validated) {
@@ -30,7 +30,7 @@ class LocalStorageAdapter implements StorageAdapter {
     }
   }
 
-  setItem<T>(key: string, value: T): boolean {
+  setItem(key: string, value: unknown): boolean {
     try {
       const serialized = JSON.stringify(value);
       localStorage.setItem(key, serialized);

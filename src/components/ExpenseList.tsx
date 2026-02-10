@@ -47,7 +47,9 @@ export const ExpenseList = ({ expenses, onEdit, onDelete }: ExpenseListProps) =>
           </div>
           <div className="expense-item-actions">
             <button
-              onClick={() => onEdit(expense)}
+              onClick={() => {
+                onEdit(expense);
+              }}
               className="btn-icon"
               aria-label="Edit expense"
               type="button"
@@ -55,7 +57,9 @@ export const ExpenseList = ({ expenses, onEdit, onDelete }: ExpenseListProps) =>
               ✏️
             </button>
             <button
-              onClick={() => onDelete(expense.id)}
+              onClick={() => {
+                onDelete(expense.id);
+              }}
               className="btn-icon btn-icon-danger"
               aria-label="Delete expense"
               type="button"

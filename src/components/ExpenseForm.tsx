@@ -26,7 +26,12 @@ export const ExpenseForm = ({ onSubmit, onCancel, initialData }: ExpenseFormProp
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="expense-form">
+    <form
+      onSubmit={(e) => {
+        void handleSubmit(onSubmit)(e);
+      }}
+      className="expense-form"
+    >
       <div className="form-group">
         <label htmlFor="amount" className="form-label">
           Amount *
@@ -51,9 +56,7 @@ export const ExpenseForm = ({ onSubmit, onCancel, initialData }: ExpenseFormProp
           className={`form-input ${errors.description ? 'form-input-error' : ''}`}
           {...register('description')}
         />
-        {errors.description && (
-          <span className="form-error">{errors.description.message}</span>
-        )}
+        {errors.description && <span className="form-error">{errors.description.message}</span>}
       </div>
 
       <div className="form-group">

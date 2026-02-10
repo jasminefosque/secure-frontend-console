@@ -36,10 +36,10 @@ describe('Expense Logic', () => {
     it('should calculate total for multiple expenses', () => {
       const expenses = [
         createExpense({ amount: 50 }),
-        createExpense({ amount: 75.50 }),
+        createExpense({ amount: 75.5 }),
         createExpense({ amount: 100 }),
       ];
-      expect(calculateTotalAmount(expenses)).toBe(225.50);
+      expect(calculateTotalAmount(expenses)).toBe(225.5);
     });
   });
 
@@ -190,12 +190,8 @@ describe('Expense Logic', () => {
         createExpense({ date: new Date('2026-02-01').toISOString() }),
       ];
       const sorted = sortExpensesByDate(expenses, true);
-      expect(new Date(sorted[0].date).getTime()).toBeLessThan(
-        new Date(sorted[1].date).getTime()
-      );
-      expect(new Date(sorted[1].date).getTime()).toBeLessThan(
-        new Date(sorted[2].date).getTime()
-      );
+      expect(new Date(sorted[0].date).getTime()).toBeLessThan(new Date(sorted[1].date).getTime());
+      expect(new Date(sorted[1].date).getTime()).toBeLessThan(new Date(sorted[2].date).getTime());
     });
 
     it('should not mutate original array', () => {

@@ -7,6 +7,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
+    exclude: ['node_modules', 'dist', 'e2e', 'playwright-report', 'test-results'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -17,6 +18,7 @@ export default defineConfig({
         '**/*.spec.{ts,tsx}',
         'src/main.tsx',
         'vite.config.ts',
+        'vitest.config.ts',
         'eslint.config.js',
       ],
     },

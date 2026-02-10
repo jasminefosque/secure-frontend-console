@@ -6,6 +6,6 @@ interface CardProps {
   className?: string;
 }
 
-export const Card = ({ children, className = '' }: CardProps) => {
+export const Card = ({ children, className }: CardProps) => {
   return <div className={`card ${className}`}>{children}</div>;
 };

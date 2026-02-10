@@ -46,7 +46,7 @@ export const loadStateFromStorage = (): RootState | undefined => {
         error: null,
       },
     } as RootState;
-  });
+  }) as RootState | undefined;
 
   return data;
 };

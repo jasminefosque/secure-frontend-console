@@ -1,6 +1,11 @@
 import { useState, useMemo } from 'react';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { addExpense, updateExpense, deleteExpense, clearAllExpenses } from '../features/expensesSlice';
+import {
+  addExpense,
+  updateExpense,
+  deleteExpense,
+  clearAllExpenses,
+} from '../features/expensesSlice';
 import { Header } from '../components/Header';
 import { Card } from '../components/Card';
 import { Modal } from '../components/Modal';
@@ -24,7 +29,10 @@ export const Dashboard = () => {
   const expenses = useAppSelector((state) => state.expenses.items);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: 'success' | 'error' | 'info';
+  } | null>(null);
 
   const sortedExpenses = useMemo(() => sortExpensesByDate(expenses), [expenses]);
 
@@ -97,7 +105,12 @@ export const Dashboard = () => {
 
       <div className="dashboard-content">
         <div className="dashboard-actions">
-          <button onClick={() => setIsAddModalOpen(true)} className="btn btn-primary">
+          <button
+            onClick={() => {
+              setIsAddModalOpen(true);
+            }}
+            className="btn btn-primary"
+          >
             + Add Expense
           </button>
           <div className="dashboard-actions-group">
@@ -168,21 +181,32 @@ export const Dashboard = () => {
 
       <Modal
         isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
+        onClose={() => {
+          setIsAddModalOpen(false);
+        }}
         title="Add New Expense"
       >
-        <ExpenseForm onSubmit={handleAddExpense} onCancel={() => setIsAddModalOpen(false)} />
+        <ExpenseForm
+          onSubmit={handleAddExpense}
+          onCancel={() => {
+            setIsAddModalOpen(false);
+          }}
+        />
       </Modal>
 
       <Modal
         isOpen={editingExpense !== null}
-        onClose={() => setEditingExpense(null)}
+        onClose={() => {
+          setEditingExpense(null);
+        }}
         title="Edit Expense"
       >
         {editingExpense && (
           <ExpenseForm
             onSubmit={handleUpdateExpense}
-            onCancel={() => setEditingExpense(null)}
+            onCancel={() => {
+              setEditingExpense(null);
+            }}
             initialData={{
               amount: editingExpense.amount,
               description: editingExpense.description,
@@ -194,7 +218,13 @@ export const Dashboard = () => {
       </Modal>
 
       {toast && (
-        <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => {
+            setToast(null);
+          }}
+        />
       )}
     </div>
   );
